@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bv3dl37a2lw55"]
+
+[ext_resource type="Script" path="res://Scripts/house.gd" id="1_ue8cg"]
+[ext_resource type="Texture2D" uid="uid://bch3kqmx080h7" path="res://Assets/Village/house_closed.png" id="2_g2c4m"]
+[ext_resource type="Texture2D" uid="uid://lt0xks000pb" path="res://Assets/Village/house_always_closed.png" id="2_sqtls"]
+[ext_resource type="Texture2D" uid="uid://dyotrtjqq8jsx" path="res://Assets/Village/house_open.png" id="3_6p5vv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_th454"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sqtls")
+}],
+"loop": true,
+"name": &"always_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g2c4m")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6p5vv")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnpeh"]
+size = Vector2(234, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4u7c"]
+size = Vector2(44, 36)
+
+[node name="House" type="Node2D" groups=["houses"]]
+y_sort_enabled = true
+script = ExtResource("1_ue8cg")
+interacting_message = "Must have a key to open a house"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -111)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_th454")
+animation = &"always_closed"
+
+[node name="MainBody" type="StaticBody2D" parent="."]
+position = Vector2(0, -111)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBody"]
+position = Vector2(0, 64.5)
+shape = SubResource("RectangleShape2D_gnpeh")
+
+[node name="DoorBody" type="StaticBody2D" parent="." groups=["doors"]]
+
+[node name="AreaCollisionShape" type="CollisionShape2D" parent="DoorBody"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_w4u7c")
+
+[node name="ExitPositionMarker" type="Marker2D" parent="."]
+position = Vector2(0, 25)

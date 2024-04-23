@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjs3ls2w3p2ca"]
+
+[ext_resource type="Texture2D" uid="uid://8cbi7uwncmp7" path="res://Assets/Consumables/olive.png" id="1_4dhhn"]
+[ext_resource type="Script" path="res://Scripts/olive.gd" id="1_amewg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plelo"]
+size = Vector2(21, 32)
+
+[node name="Olive" type="Area2D" groups=["consumables"]]
+y_sort_enabled = true
+script = ExtResource("1_amewg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_4dhhn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -16)
+shape = SubResource("RectangleShape2D_plelo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

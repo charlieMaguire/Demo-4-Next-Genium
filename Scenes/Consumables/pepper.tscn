@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv64nxjyqepcc"]
+
+[ext_resource type="Script" path="res://Scripts/pepper.gd" id="1_7eplw"]
+[ext_resource type="Texture2D" uid="uid://5w1tinwgmie5" path="res://Assets/Consumables/pepper.png" id="1_d6qgi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plelo"]
+size = Vector2(13, 32)
+
+[node name="Pepper" type="Area2D" groups=["consumables"]]
+y_sort_enabled = true
+script = ExtResource("1_7eplw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_d6qgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -16)
+shape = SubResource("RectangleShape2D_plelo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

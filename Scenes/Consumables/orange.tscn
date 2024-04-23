@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://blk85ba3sk0a7"]
+
+[ext_resource type="Script" path="res://Scripts/orange.gd" id="1_3a75w"]
+[ext_resource type="Texture2D" uid="uid://c5wskagjk0b45" path="res://Assets/Consumables/orange.png" id="1_yk3nq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plelo"]
+size = Vector2(31, 28)
+
+[node name="Orange" type="Area2D" groups=["consumables"]]
+y_sort_enabled = true
+script = ExtResource("1_3a75w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+texture = ExtResource("1_yk3nq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -14)
+shape = SubResource("RectangleShape2D_plelo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

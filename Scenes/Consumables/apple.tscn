@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch4p371lv44q0"]
+
+[ext_resource type="Texture2D" uid="uid://bht8ikr3s3fwg" path="res://Assets/Consumables/apple.png" id="1_4qste"]
+[ext_resource type="Script" path="res://Scripts/apple.gd" id="1_r8v3h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plelo"]
+size = Vector2(33, 32)
+
+[node name="Apple" type="Area2D" groups=["consumables"]]
+y_sort_enabled = true
+script = ExtResource("1_r8v3h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_4qste")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -16)
+shape = SubResource("RectangleShape2D_plelo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyqiprdj3cy4d"]
+
+[ext_resource type="Texture2D" uid="uid://4ewxovcf1bpj" path="res://Assets/Consumables/signal_pot.png" id="1_3knji"]
+[ext_resource type="Script" path="res://Scripts/signal_pot.gd" id="1_xw322"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plelo"]
+size = Vector2(32, 29)
+
+[node name="SignalPot" type="Area2D" groups=["consumables"]]
+y_sort_enabled = true
+script = ExtResource("1_xw322")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -15.5)
+texture = ExtResource("1_3knji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_plelo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

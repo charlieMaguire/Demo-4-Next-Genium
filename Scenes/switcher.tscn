@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bn35s8bqdjffo"]
+
+[ext_resource type="Script" path="res://Scripts/switcher.gd" id="1_2nq5c"]
+[ext_resource type="Texture2D" uid="uid://cs6qtwmn5bogt" path="res://Assets/switcher_off.png" id="2_lia5c"]
+[ext_resource type="Texture2D" uid="uid://cive6gap71ju" path="res://Assets/switcher_on.png" id="2_ugrds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4mu2"]
+size = Vector2(98, 102)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i1g0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lia5c")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ugrds")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uhevb"]
+
+[node name="Switcher" type="StaticBody2D" groups=["interactable"]]
+y_sort_enabled = true
+script = ExtResource("1_2nq5c")
+interacting_message = "Switch light (E)"
+
+[node name="Area2D" type="Area2D" parent="."]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -52)
+shape = SubResource("RectangleShape2D_b4mu2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, -52.9531)
+scale = Vector2(1.54688, 1.54688)
+sprite_frames = SubResource("SpriteFrames_i1g0n")
+animation = &"off"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+enabled = false
+energy = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -52)
+scale = Vector2(5.04, 5.04)
+shape = SubResource("CircleShape2D_uhevb")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

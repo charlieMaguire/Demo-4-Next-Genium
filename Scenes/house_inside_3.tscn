@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://cdsk08lr8ubdm"]
+
+[ext_resource type="Texture2D" uid="uid://cyhj4ms487g8t" path="res://Assets/house_inside_3.png" id="1_watov"]
+[ext_resource type="PackedScene" uid="uid://ch4p371lv44q0" path="res://Scenes/Consumables/apple.tscn" id="2_gdikh"]
+[ext_resource type="PackedScene" uid="uid://b8gi2jpm7n4fi" path="res://Scenes/Consumables/key.tscn" id="3_hvb6e"]
+[ext_resource type="PackedScene" uid="uid://cjs3ls2w3p2ca" path="res://Scenes/Consumables/olive.tscn" id="4_gxf41"]
+[ext_resource type="PackedScene" uid="uid://blk85ba3sk0a7" path="res://Scenes/Consumables/orange.tscn" id="5_arf5i"]
+[ext_resource type="PackedScene" uid="uid://bv64nxjyqepcc" path="res://Scenes/Consumables/pepper.tscn" id="6_2hcug"]
+[ext_resource type="PackedScene" uid="uid://cyqiprdj3cy4d" path="res://Scenes/Consumables/signal_pot.tscn" id="7_vvgmr"]
+[ext_resource type="PackedScene" uid="uid://bn35s8bqdjffo" path="res://Scenes/switcher.tscn" id="8_7uu7d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6stm"]
+size = Vector2(21, 494)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptu11"]
+size = Vector2(772, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8id5"]
+size = Vector2(212, 73)
+
+[node name="HouseInside3" type="Node2D" groups=["inside_building"]]
+y_sort_enabled = true
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(727.25, 363.5)
+scale = Vector2(1.30213, 1.24831)
+texture = ExtResource("1_watov")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(342.5, 369)
+shape = SubResource("RectangleShape2D_c6stm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1111, 369)
+shape = SubResource("RectangleShape2D_c6stm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(731, 135.5)
+shape = SubResource("RectangleShape2D_ptu11")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(731, 592)
+shape = SubResource("RectangleShape2D_ptu11")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["doors"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(726, 614)
+shape = SubResource("RectangleShape2D_s8id5")
+
+[node name="PositionOnEnteringMarker" type="Marker2D" parent="."]
+position = Vector2(731, 559)
+
+[node name="Consumables" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Apple" parent="Consumables" instance=ExtResource("2_gdikh")]
+position = Vector2(477, 236)
+
+[node name="Key" parent="Consumables" instance=ExtResource("3_hvb6e")]
+position = Vector2(588, 229)
+
+[node name="Olive" parent="Consumables" instance=ExtResource("4_gxf41")]
+position = Vector2(703, 238)
+
+[node name="Orange" parent="Consumables" instance=ExtResource("5_arf5i")]
+position = Vector2(949, 243)
+
+[node name="Pepper" parent="Consumables" instance=ExtResource("6_2hcug")]
+position = Vector2(570, 338)
+
+[node name="SignalPot" parent="Consumables" instance=ExtResource("7_vvgmr")]
+position = Vector2(482, 448)
+
+[node name="Interactables" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Switcher" parent="Interactables" instance=ExtResource("8_7uu7d")]
+position = Vector2(420, 393)
+
+[node name="Switcher2" parent="Interactables" instance=ExtResource("8_7uu7d")]
+position = Vector2(1028, 451)

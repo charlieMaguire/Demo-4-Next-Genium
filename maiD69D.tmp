@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4oecox30o6ee"]
+
+[ext_resource type="PackedScene" uid="uid://bckxskxcwbe4u" path="res://village.tscn" id="1_8nywc"]
+[ext_resource type="Script" path="res://main.gd" id="1_e1pl1"]
+[ext_resource type="PackedScene" uid="uid://c0spyf38qyp6u" path="res://player.tscn" id="2_koo4n"]
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_e1pl1")
+
+[node name="Player" parent="." instance=ExtResource("2_koo4n")]
+position = Vector2(165, 203)
+
+[node name="CurrentScene" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Village" parent="CurrentScene" instance=ExtResource("1_8nywc")]
+
+[connection signal="colliding_door" from="Player" to="." method="_on_player_colliding_door"]

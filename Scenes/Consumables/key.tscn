@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8gi2jpm7n4fi"]
+
+[ext_resource type="Script" path="res://Scripts/Key.gd" id="1_pilvn"]
+[ext_resource type="Texture2D" uid="uid://dqcbxajnh802i" path="res://Assets/Consumables/key.png" id="2_i2j10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h53fa"]
+size = Vector2(32, 12)
+
+[node name="Key" type="Area2D" groups=["consumables", "keys"]]
+y_sort_enabled = true
+script = ExtResource("1_pilvn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("2_i2j10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_h53fa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
